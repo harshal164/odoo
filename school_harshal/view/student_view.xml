@@ -1,0 +1,59 @@
+<!--<?xml version="1.0" encoding="utf-8" />-->
+
+<odoo>
+    <data>
+    <!--list view -->
+    <record id="student_tree" model="ir.ui.view">
+        <field name="name">student.tree</field>
+        <field name="model">school.student</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Student_tree">
+                <field name="stud_id" class="text-center" />
+                <field name="name" class="text-center"/>
+                <field name="age" class="text-center"/>
+                <field name="gender" class="text-center"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+<!-- form view-->
+<record id="student_view_form" model="ir.ui.view">
+    <field name="name">school.student.form</field>
+    <field name="model">school.student</field>
+    <field name="priority">5</field>
+    <field name="arch" type="xml">
+        <form name="form view">
+            <sheet>
+                <separator string="student information" />
+                <group>
+                <field name="stud_id" string="student id" />
+                <field name="name" string="name" placeholder="student name" />
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="photo"/>
+                    <field name="school_id" options="{'no_create':True}" readonly="1"/>
+                    <field name="teacher_ids" widget="many2many_tags" options="{'no_create_edit':True}"/>
+
+                </group>
+           </sheet>
+        </form>
+    </field>
+</record>
+
+
+
+    <!--action-->
+    <record id="action_to_student" model="ir.actions.act_window">
+        <field name="name">student action</field>
+        <field name="res_model">school.student</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem action="action_to_student" id="student_sub" name="student menu" parent="school_menu" sequence="2" />
+    </data>
+</odoo>
